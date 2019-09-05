@@ -2,15 +2,13 @@ const apiKey = '5R9oauDyKpWsdUP4x3VZZeZtL-Owd7Ix7v7i5rygaWdqzKQvVlJD1-_WozkHA8Cw
 
 const Yelp = {
     search: function(term, location, sortBy) {
-        const h = new Headers();
-        h.append("Authorization", "Bearer " + apiKey);
-        let url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=50&term=${term}&location=${location}&sort_by=${sortBy}`;
+        const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=50&term=${term}&location=${location}&sort_by=${sortBy}`;
         return fetch(
             url,
             {
-                "x-requested-with": "xmlhttprequest",
-                "Access-Control-Allow-Origin":"*",
-                headers: h 
+                headers: {
+                    Authorization: `Bearer ${apiKey}`
+                } 
             }
         )
         .then(response => {
